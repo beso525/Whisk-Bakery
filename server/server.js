@@ -38,7 +38,7 @@ app.use(async (req, res, next) => {
 
 app.use(
   cors({
-    origin: ["https://whiskbasel.vercel.app", "http://localhost:5173"],
+    origin: ["https://whiskbasel.vercel.app"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",

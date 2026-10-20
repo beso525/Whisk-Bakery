@@ -27,7 +27,7 @@ function AuthRegister() {
       } else {
         toast.error(data.payload.message)
       }
-      navigate("/login")
+      navigate("/auth/login")
     })
   }
 

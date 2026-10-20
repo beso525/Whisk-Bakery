@@ -23,6 +23,7 @@ import { Skeleton } from './components/ui/skeleton'
 import PaypalReturnPage from './pages/user-view/paypal-return'
 import PaymentSuccessPage from './pages/user-view/payment-success'
 import Search from './pages/user-view/search'
+import PaymentCancelPage from './pages/user-view/payment-cancel'
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
 
   if (isLoading) return <Skeleton className="h-[600px] w-[600px]" />
   return (
-    <div className='flex flex-col overflow-hidden bg-white'>
+    <div className='flex flex-col overflow-hidden bg-white h-full'>
       <Routes>
         <Route path="/" element={
           <CheckAuth isAuthenticated={isAuthenticated} user={user}>
@@ -68,6 +69,7 @@ function App() {
           <Route path="account" element={<UserAccount />} />
           <Route path="paypal-return" element={<PaypalReturnPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
+          <Route path="payment-cancel" element={<PaymentCancelPage />} />
           <Route path="search" element={<Search />} />
         </Route>
         <Route path="*" element={<NotFound />} />

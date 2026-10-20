@@ -1,8 +1,6 @@
 const Cart = require ('../../models/Cart')
 const Product = require("../../models/Product")
 
-// study this better, and controllers in general
-
 const addToCart = async(req, res) => {
   try {
     const {userId, productId, quantity} = req.body;

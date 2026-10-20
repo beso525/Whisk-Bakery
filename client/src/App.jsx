@@ -36,7 +36,7 @@ function App() {
 
   if (isLoading) return <Skeleton className="h-[600px] w-[600px]" />
   return (
-    <div className='flex flex-col overflow-hidden bg-white h-full'>
+    <div className='flex flex-col overflow-hidden bg-white'>
       <Routes>
         <Route path="/" element={
           <CheckAuth isAuthenticated={isAuthenticated} user={user}>

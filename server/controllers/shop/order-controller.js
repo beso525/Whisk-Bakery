@@ -20,6 +20,10 @@ const createOrder = async(req, res) => {
       payerId
     } = req.body;
 
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    const frontEndUrl = isProduction ? "https://whiskbasel.vercel.app" : "http://localhost:5173"
+
     const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2);
     const create_payment_json = {
       intent : 'sale',
@@ -27,8 +31,8 @@ const createOrder = async(req, res) => {
         payment_method : 'paypal'
       },
       redirect_urls: {
-        return_url : `/api/shop/paypal-return`,
-        cancel_url : `/api/shop/payment-cancel`,
+        return_url : `${frontEndUrl}/shop/paypal-return`,
+        cancel_url : `${frontEndUrl}/shop/payment-cancel`,
       },
       transactions : [
         {

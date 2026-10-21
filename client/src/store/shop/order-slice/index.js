@@ -11,7 +11,6 @@ const initialState = {
 
 export const createNewOrder = createAsyncThunk('/order/createNewOrder', 
   async(orderData) => {
-    console.log(orderData);
     const response = await api.post('/api/shop/order/create', orderData)    
     return response?.data;
 })

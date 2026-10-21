@@ -21,10 +21,36 @@ const createOrder = async(req, res) => {
     } = req.body;
 
     const isProduction = process.env.NODE_ENV === 'production';
-
     const frontEndUrl = isProduction ? "https://whiskbasel.vercel.app" : "http://localhost:5173"
 
-    const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2);
+    let subtotal = 0;
+    const validatedItems = [];
+
+    for (const item of cartItems) {
+      const dbProduct = await Product.findById(item.productId);
+
+      if (!dbProduct) {
+        return res.status(404).json({
+          success:false,
+          message: `Product ${item.title} not found`
+        })
+      }
+
+      const officialPrice = dbProduct.salePrice > 0 ? dbProduct.salePrice : dbProduct.price;
+
+      subtotal += Number(officialPrice) * Number(item.quantity);
+
+      validatedItems.push({
+        name: dbProduct.title,
+        sku: dbProduct._id.toString(),
+        price: Number(officialPrice).toFixed(2),
+        currency: "CAD",
+        quantity: item.quantity
+      })
+    }
+    
+    const finalTotal = subtotal.toFixed(2);
+
     const create_payment_json = {
       intent : 'sale',
       payer : {
@@ -36,20 +62,12 @@ const createOrder = async(req, res) => {
       },
       transactions : [
         {
-          item_list : {
-            items : cartItems.map(item => ({
-              name: item.title,
-              sku: item.productId,
-              price: item.price.toFixed(2),
-              currency : 'CAD',
-              quantity: item.quantity
-            }))
-          },
+          item_list : { items : validatedItems },
           amount: {
             currency : 'CAD',
-            total: subtotal
+            total: finalTotal
           },
-          description : 'description'
+          description : 'Whisk Store Purchase'
         }
       ]
     }

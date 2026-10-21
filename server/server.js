@@ -1,6 +1,7 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv")
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRouter = require('./routes/auth/auth-routes')
@@ -13,7 +14,6 @@ const shopAddressRouter = require('./routes/shop/address-routes')
 const shopOrderRouter = require('./routes/shop/order-routes')
 const shopSearchRouter = require('./routes/shop/search-routes')
 
-dotenv.config();
 const app = express();
 
 let isConnected = false;
@@ -38,7 +38,7 @@ app.use(async (req, res, next) => {
 
 app.use(
   cors({
-    origin: ["https://whiskbasel.vercel.app"],
+    origin: ["https://whiskbasel.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",

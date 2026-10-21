@@ -3,7 +3,7 @@ body {
 }
 
 #root {
-  font-family: "Bungee", sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   font-style: normal;
   font-weight: 400;
   margin: 0 auto;

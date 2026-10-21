@@ -1,12 +1,13 @@
 const express = require('express');
 
-const {addAddress, getAddress, deleteAddress, editAddress} = require('../../controllers/shop/address-controller')
+const {addAddress, getAddress, deleteAddress, editAddress} = require('../../controllers/shop/address-controller');
+const { middleware } = require('../../controllers/auth/auth-controller');
 
 const router = express.Router();
 
-router.post('/add', addAddress);
-router.get('/get/:userId', getAddress)
-router.delete('/delete/:userId/:addressId', deleteAddress)
-router.put('/update/:userId/:addressId', editAddress)
+router.post('/add', middleware, addAddress);
+router.get('/get/:userId', middleware, getAddress)
+router.delete('/delete/:userId/:addressId', middleware, deleteAddress)
+router.put('/update/:userId/:addressId', middleware, editAddress)
 
 module.exports = router;

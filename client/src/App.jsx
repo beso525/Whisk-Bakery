@@ -43,8 +43,8 @@ function App() {
             <AuthLayout />
           </CheckAuth>
         }>
-          <Route path="auth/login" element={<AuthLogin />} />
-          <Route path="auth/register" element={<AuthRegister />} />
+          <Route path="login" element={<AuthLogin />} />
+          <Route path="register" element={<AuthRegister />} />
         </Route>
 
         <Route path="/admin" element={

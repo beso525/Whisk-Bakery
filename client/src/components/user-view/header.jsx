@@ -63,7 +63,7 @@ function DetailsHeader() {
 
   useEffect(() => {
     if (user?.id) {
-      dispatch(getCart(user?.id))
+      dispatch(getCart())
     }
   }, [dispatch, user]);
 

@@ -2,10 +2,18 @@ const Address = require('../../models/Address')
 
 const addAddress = async(req,res) => {
   try {
+    const userId = req.user.id;
 
     const { address, city, postalcode, phone, notes } = req.body;
-    const userId = req.user.id;
-    if (!userId || !address || !city || !postalcode || !phone || !notes) {
+    
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid User Session"
+      })
+    }
+    
+    if (!address || !city || !postalcode || !phone) {
       return res.status(400).json({
         success: false,
         message: 'Invalid data provided'

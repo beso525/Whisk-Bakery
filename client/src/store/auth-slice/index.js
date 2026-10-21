@@ -7,14 +7,14 @@ const initialState = {
   user: null,
 };
 
-export const registerUser = createAsyncThunk('/auth/register',
+export const registerUser = createAsyncThunk('/register',
   async(formData) => {
     const res = await api.post('/api/auth/register', formData)
     return res.data;
   }
 )
 
-export const loginUser = createAsyncThunk('/auth/login',
+export const loginUser = createAsyncThunk('/login',
   async(formData) => {
     const res = await api.post(`/api/auth/login`, formData)
     return res.data;

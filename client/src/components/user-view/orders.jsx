@@ -16,7 +16,7 @@ function UserOrders() {
   const { orderList, orderDetails, resetOrderDetails } = useSelector(state => state.shopOrder)
 
   useEffect(() => {
-    dispatch(getAllOrdersByUserId(user?.id))
+    dispatch(getAllOrdersByUserId())
   }, [dispatch, user])
 
   function handleFetchOrderDetails(getOrderId) {

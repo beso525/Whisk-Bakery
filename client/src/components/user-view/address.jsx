@@ -46,18 +46,16 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
         }))
           .then(data => {
             if (data?.payload?.success) {
-              dispatch(getAddress(user?.id))
+              dispatch(getAddress())
               setCurrentEditId(null)
               setFormData(initialAddressFormData)
               toast.success("Address edited.")
             }
           }) :
-        dispatch(addAddress({
-          ...formData
-        }))
+        dispatch(addAddress(formData))
           .then(data => {
             if (data?.payload?.success) {
-              dispatch(getAddress(user?.id))
+              dispatch(getAddress())
               setFormData(initialAddressFormData)
               toast.success("Address added.")
             }
@@ -70,7 +68,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
       addressId: getCurrentAddressId._id
     })).then(data => {
       if (data?.payload?.success) {
-        dispatch(getAddress(user?.id))
+        dispatch(getAddress())
         toast.success("Address deleted.")
       }
     })
@@ -89,7 +87,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
   }
 
   useEffect(() => {
-    dispatch(getAddress(user?.id))
+    dispatch(getAddress())
   }, [dispatch, user])
 
 

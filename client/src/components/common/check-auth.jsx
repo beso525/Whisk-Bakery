@@ -6,14 +6,14 @@ function CheckAuth({ isAuthenticated, user, children }) {
   if (
     !isAuthenticated &&
     !(
-      location.pathname.includes('/auth/login') ||
-      location.pathname.includes('/auth/register') ||
+      location.pathname.includes('/login') ||
+      location.pathname.includes('/register') ||
       location.pathname.includes('/shop')
     )) {
-    return <Navigate to='/auth/login' />;
+    return <Navigate to='/login' />;
   }
 
-  if (isAuthenticated && (location.pathname.startsWith('/auth/login') || location.pathname.startsWith('/auth/register'))) {
+  if (isAuthenticated && (location.pathname.startsWith('/login') || location.pathname.startsWith('/register'))) {
     return (user?.role === "admin")
       ? <Navigate to="/admin/dashboard" />
       : <Navigate to="/shop/home" />

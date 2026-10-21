@@ -6,7 +6,6 @@ const Product = require('../../models/Product')
 const createOrder = async(req, res) => {
   try{
     const {
-      userId,
       cartId,
       cartItems,
       addressInfo,
@@ -19,6 +18,8 @@ const createOrder = async(req, res) => {
       paymentId,
       payerId
     } = req.body;
+
+    const userId = req.user.id;
 
     const isProduction = process.env.NODE_ENV === 'production';
     const frontEndUrl = isProduction ? "https://whiskbasel.vercel.app" : "http://localhost:5173"
@@ -166,7 +167,7 @@ const capturePayment = async(req, res) => {
 
 const getAllOrdersByUsers = async(req,res) => {
   try {
-    const {userId} = req.params;
+    const userId = req.user.id;
 
     const orders = await Order.find({userId})
 

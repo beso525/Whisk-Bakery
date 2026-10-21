@@ -8,31 +8,31 @@ const initialState = {
 }
 
 export const addToCart = createAsyncThunk('cart/addToCart', 
-  async({userId, productId, quantity})=> {
+  async({productId, quantity})=> {
     const response = await api.post("/api/shop/cart/add",{
-      userId, productId, quantity
+     productId, quantity
     })
 
     return response.data
 })
 
 export const getCart = createAsyncThunk('cart/getCart', 
-  async(userId)=> {
-    const response = await api.get(`/api/shop/cart/get/${userId}`)
+  async()=> {
+    const response = await api.get('/api/shop/cart/get')
     return response.data
 })
 
 export const deleteCartItem = createAsyncThunk('cart/deleteCartItem', 
-  async({userId, productId})=> {
+  async(productId)=> {
     const response = 
-      await api.delete(`/api/shop/cart/${userId}/${productId}`)
+      await api.delete(`/api/shop/cart/${productId}`)
     return response.data
 })
 
 export const updateCartQty = createAsyncThunk('cart/updateCartQty', 
-  async({userId, productId, quantity})=> {
+  async({productId, quantity})=> {
     const response = await api.put("/api/shop/cart/update-cart",{
-      userId, productId, quantity
+      productId, quantity
     })
     return response.data
 })

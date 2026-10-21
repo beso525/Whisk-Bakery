@@ -14,22 +14,22 @@ export const addAddress = createAsyncThunk('address/addAddress',
 })
 
 export const getAddress = createAsyncThunk('address/getAddress', 
-  async(userId)=> {
-    const response = await api.get(`/api/shop/address/get/${userId}`)
+  async()=> {
+    const response = await api.get('/api/shop/address/get')
     return response.data
 })
 
 export const editAddress = createAsyncThunk('address/editAddress', 
-  async({userId, addressId, formData})=> {
-    const response = await api.put(`/api/shop/address/update/${userId}/${addressId}`, 
+  async({addressId, formData})=> {
+    const response = await api.put(`/api/shop/address/update/${addressId}`, 
       formData
     );
     return response.data
 })
 
 export const deleteAddress = createAsyncThunk('address/deleteAddress', 
-  async({userId, addressId})=> {
-    const response = await api.delete(`/api/shop/address/delete/${userId}/${addressId}`)
+  async({addressId})=> {
+    const response = await api.delete(`/api/shop/address/delete/${addressId}`)
     return response.data
 })
 

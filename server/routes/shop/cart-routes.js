@@ -6,8 +6,8 @@ const { middleware } = require('../../controllers/auth/auth-controller');
 const router = express.Router();
 
 router.post('/add', middleware, addToCart);
-router.get('/get/:userId', middleware, getCart);
+router.get('/get', middleware, getCart);
 router.put('/update-cart', middleware, updateCartQty);
-router.delete('/:userId/:productId', middleware, deleteCartItem);
+router.delete('/:productId', middleware, deleteCartItem);
 
 module.exports = router;

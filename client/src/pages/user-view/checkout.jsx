@@ -31,7 +31,6 @@ function UserCheckout() {
     } else {
 
       const orderData = {
-        userId: user?.id,
         cartId: cartItems?._id,
         cartItems: cartItems.items.map(cartItem => ({
           productId: cartItem?.productId,

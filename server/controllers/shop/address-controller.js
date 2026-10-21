@@ -3,8 +3,8 @@ const Address = require('../../models/Address')
 const addAddress = async(req,res) => {
   try {
 
-    const { userId, address, city, postalcode, phone, notes } = req.body;
-
+    const { address, city, postalcode, phone, notes } = req.body;
+    const userId = req.user.id;
     if (!userId || !address || !city || !postalcode || !phone || !notes) {
       return res.status(400).json({
         success: false,
@@ -34,7 +34,7 @@ const addAddress = async(req,res) => {
 const getAddress = async(req,res) => {
   try {
 
-    const {userId} = req.params;
+    const userId = req.user.id;
     if (!userId) {
       return res.status(400).json({
         success: false,
@@ -59,7 +59,8 @@ const getAddress = async(req,res) => {
 
 const editAddress = async(req,res) => {
   try {
-    const {userId, addressId} = req.params;
+    const { addressId} = req.params;
+    const userId = req.user.id;
     const formData = req.body;
 
     if (!userId || !addressId) {
@@ -96,8 +97,8 @@ const editAddress = async(req,res) => {
 
 const deleteAddress = async(req,res) => {
   try {
-    const {userId, addressId} = req.params;
-
+    const {addressId} = req.params;
+    const userId = req.user.id;
     if (!userId || !addressId) {
       return res.status(400).json({
         success: false,

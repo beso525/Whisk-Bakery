@@ -3,8 +3,8 @@ const Product = require("../../models/Product")
 
 const addToCart = async(req, res) => {
   try {
-    const {userId, productId, quantity} = req.body;
-    
+    const {productId, quantity} = req.body;
+    const userId = req.user.id;
     if (!userId || !productId || quantity < 1) {
       return res.status(400).json({
         success: false,
@@ -51,7 +51,7 @@ const addToCart = async(req, res) => {
 
 const getCart = async(req, res) => {
   try {
-    const {userId} = req.params;
+    const userId = req.user.id;
     if (!userId) {
       return res.status(404).json({
         success: false,
@@ -105,8 +105,8 @@ const getCart = async(req, res) => {
 
 const updateCartQty = async(req, res) => {
   try {
-    const {userId, productId, quantity} = req.body;
-    
+    const {productId, quantity} = req.body;
+    const userId = req.user.id;
     if (!userId || !productId || quantity < 1) {
       return res.status(400).json({
         success: false,
@@ -166,7 +166,8 @@ const updateCartQty = async(req, res) => {
 
 const deleteCartItem = async(req, res) => {
   try {
-    const {userId, productId} = req.params;
+    const {productId} = req.params;
+    const userId = req.user.id;
     if (!userId || !productId) {
       return res.status(404).json({
         success: false,

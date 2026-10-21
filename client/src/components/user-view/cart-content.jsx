@@ -13,7 +13,6 @@ function CartContent({ cartItem }) {
 
   function handleDeleteCartItem(getCartItem) {
     dispatch(deleteCartItem({
-      userId: user?.id,
       productId: getCartItem?.productId
     }))
   }
@@ -44,7 +43,6 @@ function CartContent({ cartItem }) {
     }
 
     dispatch(updateCartQty({
-      userId: user?.id,
       productId: getCartItem?.productId,
       quantity:
         getAction === "increase"

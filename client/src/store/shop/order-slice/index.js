@@ -22,8 +22,8 @@ export const capturePayment = createAsyncThunk('/order/capturePayment',
 })
 
 export const getAllOrdersByUserId = createAsyncThunk('/order/getAllOrdersByUserId', 
-  async(userId) => {
-  const response = await api.get(`/api/shop/order/list/${userId}`)    
+  async() => {
+  const response = await api.get('/api/shop/order/list')    
   return response?.data;
 })
 

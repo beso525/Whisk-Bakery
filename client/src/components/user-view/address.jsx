@@ -41,7 +41,6 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     } else {
       currentEditId !== null ?
         dispatch(editAddress({
-          userId: user?.id,
           addressId: currentEditId,
           formData
         }))
@@ -54,8 +53,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
             }
           }) :
         dispatch(addAddress({
-          ...formData,
-          userId: user?.id
+          ...formData
         }))
           .then(data => {
             if (data?.payload?.success) {
@@ -69,7 +67,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
 
   function handleDeleteAddress(getCurrentAddressId) {
     dispatch(deleteAddress({
-      userId: user?.id, addressId: getCurrentAddressId._id
+      addressId: getCurrentAddressId._id
     })).then(data => {
       if (data?.payload?.success) {
         dispatch(getAddress(user?.id))

@@ -65,7 +65,7 @@ function UserHome() {
       return;
     }
     dispatch(addToCart({
-      userId: user?.id, productId: getCurrentProductId, quantity: 1
+      productId: getCurrentProductId, quantity: 1
     }))
       .then((data) => {
         if (data?.payload?.success) {

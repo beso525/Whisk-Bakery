@@ -6,8 +6,8 @@ const { middleware } = require('../../controllers/auth/auth-controller');
 const router = express.Router();
 
 router.post('/add', middleware, addAddress);
-router.get('/get/:userId', middleware, getAddress)
-router.delete('/delete/:userId/:addressId', middleware, deleteAddress)
-router.put('/update/:userId/:addressId', middleware, editAddress)
+router.get('/get', middleware, getAddress)
+router.delete('/delete/:addressId', middleware, deleteAddress)
+router.put('/update/:addressId', middleware, editAddress)
 
 module.exports = router;

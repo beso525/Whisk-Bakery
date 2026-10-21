@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/create', middleware, createOrder);
 router.post('/capture', middleware, capturePayment)
-router.get('/list/:userId', middleware, getAllOrdersByUsers)
+router.get('/list', middleware, getAllOrdersByUsers)
 router.get('/details/:id', middleware, getAllOrdersByDetails)
 
 module.exports = router;
